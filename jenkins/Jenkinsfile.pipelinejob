@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    environment {
+        CI = 'true'
+        GENERATE_RELEASE_NOTES = '1'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        timeout(time: 35, unit: 'MINUTES')
+        timestamps()
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo "Test!"'
+            }
+        }
+    }
+}
+
